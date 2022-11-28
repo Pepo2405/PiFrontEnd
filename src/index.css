@@ -1,0 +1,66 @@
+html {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/002/859/091/original/world-map-background-in-navy-blue-and-gold-free-vector.jpg");
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  backdrop-filter: blur(3px);
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  align-items: center;
+  height: 100%;
+}
+.header {
+  flex-basis: 2;
+  min-height: 3rem;
+  background-color: #fff;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.main {
+  padding: 1rem 2rem;
+  height: 100%;
+  width: 100%;
+}
+.footer {
+  flex-basis: 1;
+  min-height: 3rem;
+  background-color: antiquewhite;
+  width: 100%;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
