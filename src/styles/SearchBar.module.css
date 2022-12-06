@@ -1,5 +1,4 @@
 .group {
-  margin-top: 1rem;
   display: flex;
   line-height: 28px;
   align-items: center;
@@ -32,12 +31,12 @@
 .input:focus,
 input:hover {
   outline: none;
-  border-color: rgba(234, 76, 137, 0.4);
+  border-color: rgba(29, 183, 255, 0.692);
   background-color: #fff;
   box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
 }
 .icon:hover {
-  fill: rgba(234, 76, 137, 0.4);
+  fill: rgba(29, 183, 255, 0.692);
 }
 
 .icon {

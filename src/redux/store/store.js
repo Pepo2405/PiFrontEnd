@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import reducer from "../reducer/reducers";
+import countryReducer from '../slices/countries'
 import thunk from "redux-thunk";
 
-export default configureStore({ reducer: reducer, middleware: [thunk] });
+export default configureStore({ reducer: {countryReducer}, middleware: [thunk] });

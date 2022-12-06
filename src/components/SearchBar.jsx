@@ -1,18 +1,36 @@
 import React from "react";
-import styles from "../styles/SearchBar.module.css"
-import {BiSearch} from 'react-icons/bi'
+import styles from "../styles/SearchBar.module.css";
 import { useDispatch } from "react-redux";
-import {searchByName} from '../redux/actions/action'
-export const SearchBar = () => {
+import { searchByName } from "../redux/slices/countries";
+import { useHistory, useLocation } from "react-router-dom";
+
+export const SearchBar = ({ nav, autofocus }) => {
   const dispatch = useDispatch();
-  const handleChange = (e)=>{
-    console.log(e.target.value)
-    dispatch(searchByName(e.target.value.toLowerCase()))
-  }
+  let history = useHistory();
+  const location = useLocation();
+
+  const handleChange = (e) => {
+    dispatch(searchByName(e.target.value.toLowerCase()));
+    if (location.pathname.includes("/home")) {
+      nav(1);
+      history.push("/home/page/1");
+    }
+  };
+
   return (
     <div className={styles.group}>
-      <input className={styles.input} onChange={handleChange} type={"text"} placeholder="Buscar Pais" />
-     <BiSearch className={styles.icon}></BiSearch>
+      <input
+        autoFocus={autofocus}
+        className={styles.input}
+        onChange={handleChange}
+        type={"text"}
+        placeholder="Buscar Pais"
+      />
+      <svg className={styles.icon} aria-hidden="true" viewBox="0 0 24 24">
+        <g>
+          <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+        </g>
+      </svg>
     </div>
   );
 };

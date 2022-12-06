@@ -1,5 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styles from "../styles/card.module.css";
+import {PersonIcon} from '../assets/icons'
 
 export const Card = ({
   id,
@@ -9,17 +11,38 @@ export const Card = ({
   flag_img,
   coatOfArms,
 }) => {
+  const poblacion = new Intl.NumberFormat().format(population);
+
   return (
-    <div className={styles.card}>
-      <div className={styles.header}>
-        <p className={styles["text-title"]}>{name}</p>
-        <img className={styles.img} src={flag_img || coatOfArms}></img>
-      </div>
-      <div className={styles["card-details"]}>
-        <p className={styles["text-body"]}>Continente:</p>
-        <p className={styles["text-body"]}>{continent_name}</p>
-      </div>
-      <button className={styles["card-button"]}>Mas Info</button>
-    </div>
+    <>
+      <NavLink
+        to={`/country/${id}`}
+        className={styles.container}
+        style={{
+          background: `center/cover url(${flag_img}) no-repeat `,
+        }}
+      >
+        <div className={styles.container__profile}>
+          <img
+            className={styles.img}
+            src={coatOfArms || flag_img}
+            alt="people"
+          />
+          <div className={styles.container__profile__text}>
+            <h2 className={styles.h2}>{name}</h2>
+            <p className={styles.p}>
+              Continente <b className={styles.b}>{continent_name}</b>
+            </p>
+          </div>
+        </div>
+        <div className={styles.container__info}>
+          <span className={styles.span}>
+            <PersonIcon  className={styles.icon}/>
+
+            <p className={styles.darkText}>{poblacion}</p>
+          </span>
+        </div>
+      </NavLink>
+    </>
   );
 };
