@@ -8,7 +8,7 @@ export const Welcome = () => {
     <>
       <Link to="/home/page/1">
         <Button
-          style={{ position: "absolute", top: "50%" }}
+          style={{ position: "absolute", top: "50%",left:"50%" }}
           text={"Ingresar"}
         />
       </Link>
