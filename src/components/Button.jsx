@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/button.module.css";
+import styles from "../styles/Button.module.css";
 import animations from '../styles/Animations.module.css'
 export const Button = ({ text, style }) => {
     
