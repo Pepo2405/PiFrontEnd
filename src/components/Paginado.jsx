@@ -57,7 +57,7 @@ export const Paginado = ({
           handleArrow(1);
         }}
         className={styles.button}
-        style={{transform:"scalex(-1)",maxWidth:"35px"}}
+        style={{transform:"scalex(-1)",maxWidth:"30px"}}
       ></LeftArrow>
     </div>
   );

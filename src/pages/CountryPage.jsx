@@ -6,12 +6,14 @@ import { Layout } from "../components/Layout";
 import { Loader } from "../components/Loader";
 import styles from "../styles/CountryPage.module.css";
 import { AddIcon, EditIcon } from "../assets/icons";
+import { GoBackButton } from "../components/GoBackButton";
 
 export const Country = () => {
   const { countries } = useSelector((state) => state.countryReducer);
   const dispatch = useDispatch();
   const { id } = useParams();
   const country = countries.find((el) => el.id == id);
+
 
   const poblacion = new Intl.NumberFormat().format(country?.population);
   useEffect(() => {
@@ -22,6 +24,7 @@ export const Country = () => {
       <Layout>
         {country && (
           <div className={styles.main}>
+            <GoBackButton/>
             <header className={styles.header}>
               <div className={styles.titulo}>
                 <b>{country.cioc}</b>

@@ -55,6 +55,7 @@ export const LeftArrow = (props) => (
     style={{
       enableBackground: "new 0 0 490 490",
       maxWidth: "30px",
+      width:"30px"
     }}
     xmlSpace="preserve"
     {...props}

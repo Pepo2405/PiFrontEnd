@@ -4,6 +4,7 @@ import { Filtros } from "../components/Filtros";
 import styles from "./../styles/ActivitiesForm.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { GoBackButton } from "./GoBackButton";
 
 export const Form = ({ activity, countries }) => {
   const history = useHistory();
@@ -109,6 +110,7 @@ export const Form = ({ activity, countries }) => {
     <div>
       {" "}
       <form onSubmit={handleSubmit} className={styles.form}>
+        <GoBackButton/>
         <div className={styles.contenedor}>
           <div>
             <div className={`${styles.form__group} ${styles.field}`}>
