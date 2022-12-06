@@ -24,7 +24,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-size: 200% 200%;
-  animation: gradient 32s linear infinite;
+  animation: gradient 48s linear infinite;
   -webkit-text-size-adjust: 100%;
 }
 .appBorder {
