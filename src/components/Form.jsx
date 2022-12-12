@@ -107,6 +107,7 @@ export const Form = ({ activity, countries }) => {
       console.log("response",response.data)
       return response.data.url;
     } catch (error) {
+      console.log(error)
       return;
     }
   };
