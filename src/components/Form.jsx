@@ -103,6 +103,7 @@ export const Form = ({ activity, countries }) => {
         `${import.meta.env.VITE_CLOUDINARY_API}`,
         foto
       );
+      console.log(`el link: ${import.meta.env.VITE_CLOUDINARY_API}`)
       console.log("response",response.data)
       return response.data.url;
     } catch (error) {
@@ -122,6 +123,7 @@ export const Form = ({ activity, countries }) => {
           console.log("entro")
           image = await UploadImg();
           console.log("la imageeeen",image)
+          
         }
         const response = await axios.post(`${import.meta.env.VITE_BACKEND}/activities`, {
           ...form,
