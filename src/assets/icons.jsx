@@ -54,10 +54,9 @@ export const LeftArrow = (props) => (
     viewBox="0 0 490 490"
     style={{
       enableBackground: "new 0 0 490 490",
-      maxWidth: "30px",
-      width:"30px"
+      width:"30px",
+      height:"30px"
     }}
-    xmlSpace="preserve"
     {...props}
     fill={props.color || "white"}
   >

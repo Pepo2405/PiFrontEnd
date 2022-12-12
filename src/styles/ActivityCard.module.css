@@ -1,0 +1,35 @@
+
+.actividad {
+  display: flex;
+  align-items: center;
+  background: rgba(4, 115, 163, 0.72);
+
+  border-radius: 10px;
+  padding: 1rem;
+  filter: drop-shadow(0px 0px 1px rgb(0, 0, 0));
+  gap: 1rem;
+  font-weight: bolder;
+  transition: 0.2s ease-in-out;
+  scale: 1;
+}
+.actividad:hover {
+  scale: 1.02;
+}
+
+.edit {
+  fill: whitesmoke;
+  transition: 0.3s ease-in;
+}
+
+.edit:hover {
+  fill: rgb(0, 0, 0);
+  scale: 1.2;
+}
+
+.texto > * {
+  filter: drop-shadow(1px 1px 2px rgb(0, 0, 0));
+  text-transform: capitalize;
+}
+.actTitulo {
+  font-size: 1.3rem;
+}

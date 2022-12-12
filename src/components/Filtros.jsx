@@ -23,7 +23,6 @@ export const Filtros = ({ activities,setPage }) => {
     if (location.pathname.includes("/home")) {
       if(filters.continents !== "All" && filters.activities !== "All" ){
         history.push("/home/page/1");
-        console.log("gola")
         setPage(1)
       }
     }

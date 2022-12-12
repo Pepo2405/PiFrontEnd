@@ -8,8 +8,9 @@ import { Layout } from "../components/Layout";
 import { Loader } from "../components/Loader";
 import { Filtros } from "../components/Filtros";
 import { useDispatch } from "react-redux";
-import { getActivities } from "../redux/slices/countries";
+import { getActivities, getAllCountries } from "../redux/slices/countries";
 import { AddIcon } from "../assets/icons";
+
 
 export const Home = () => {
   const { countries, activities } = useSelector(
@@ -59,11 +60,17 @@ export const Home = () => {
   };
   useEffect(() => {
     dispatch(getActivities());
+    dispatch(getAllCountries());
+
   }, [pageNum]);
+
+
+  
 
   return (
     <>
       <Layout nav={paginado}>
+        
         <SearchBar nav={setCurrentPage} autofocus={true} />
         <select
           onChange={(e) => {
@@ -77,14 +84,22 @@ export const Home = () => {
           <option value={"menosPoblacion"}> {">"} Poblacion</option>
           <option value={"masPoblacion"}>{"<"} Poblacion</option>
         </select>
-        <div style={{display:"flex",gap:"0.2rem"}}>
+        <div style={{ display: "flex", gap: "0.2rem" }}>
           <Filtros
             countries={countries}
             setPage={setCurrentPage}
             activities={activities}
           />
-          <Link to={"/addActivity"} >
-          <AddIcon   style={{height:"40px",width:"40px",fill:"white",borderRadius:"10px",border:"3px solid #09aefe"}}/>
+          <Link to={"/addActivity"}>
+            <AddIcon
+              style={{
+                height: "40px",
+                width: "40px",
+                fill: "white",
+                borderRadius: "10px",
+                border: "3px solid #09aefe",
+              }}
+            />
           </Link>
         </div>
 
@@ -95,7 +110,9 @@ export const Home = () => {
         ) : (
           <>
             <div>
-              <h1 className="loader" style={{ fontWeight: "bolder" }}>No se encontraron Paises</h1>
+              <h1 className="loader" style={{ fontWeight: "bolder" }}>
+                No se encontraron Paises
+              </h1>
               <Loader></Loader>
             </div>
           </>

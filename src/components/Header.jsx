@@ -3,25 +3,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAllCountries } from "../redux/slices/countries";
-export const Header = ({nav}) => {
+export const Header = ({ nav }) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(getAllCountries());
-    if(nav){
-      console.log("pasamanos")
-      nav(1)
-      console.log("passamanos")
-
+    if (nav) {
+      nav(1);
     }
   };
   return (
     <>
-      <Link
-        to={"/home/page/1"}
-        
-        onClick={handleClick}
-        className="homeheader"
-      >
+      <Link to={"/home/page/1"} onClick={handleClick} className="homeheader">
         <h1 className="border h1">WikiCountries</h1>
         <h1 className="wave h1">WikiCountries</h1>
       </Link>

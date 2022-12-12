@@ -14,10 +14,10 @@ export const NotFound = () => {
           Podes Clickear{" "}
           <Link to={"/home/page/1"} className={styles.link}>
             aca{" "}
-          </Link>{" "}
+          </Link>
           para volver
         </h2>
-        <img src={logo} alt="" />
+        <img src={logo} alt={"404"} />
       </main>
     </Layout>
   );

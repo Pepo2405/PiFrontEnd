@@ -5,10 +5,13 @@ import styles from "./../styles/ActivitiesForm.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { GoBackButton } from "./GoBackButton";
+import { ImgUpload } from "./ImgUpload";
+import { useDispatch } from "react-redux";
+import { getAllCountries } from "../redux/slices/countries";
 
 export const Form = ({ activity, countries }) => {
+  const dispatch = useDispatch();
   const history = useHistory();
-
   const [form, setForm] = useState(
     !activity
       ? {
@@ -18,6 +21,7 @@ export const Form = ({ activity, countries }) => {
           season: "spring",
           duration: "",
           countries: [],
+          img: "",
         }
       : { ...activity, countries: activity.countries.map((el) => el.name) }
   );
@@ -75,6 +79,7 @@ export const Form = ({ activity, countries }) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
     errorChecker();
+    console.log(form);
   };
 
   const onCheckHandler = (e) => {
@@ -88,16 +93,43 @@ export const Form = ({ activity, countries }) => {
     }
   };
 
+  const UploadImg = async () => {
+    const foto = new FormData();
+    foto.append("file", form.img);
+    foto.append("api_key", import.meta.env.VITE_CLOUDINARY_API_KEY);
+    foto.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+    foto.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_CLOUDINARY_API}`,
+        foto
+      );
+      console.log("vamo bien");
+      return response.data.url;
+    } catch (error) {
+      return;
+    }
+  };
+  const setImage = (image) => {
+    setForm({ ...form, img: image });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!error.error) {
       try {
-        const response = await axios.post(
-          `${import.meta.env.VITE_BACKEND}/activities`,
-          form
-        );
-
+        let image = "";
+        if (form.image != "" && form.image) {
+          console.log("el image",form.image)
+          console.log("entro al if")
+          image = await UploadImg();
+        } 
+        await axios.post(`${import.meta.env.VITE_BACKEND}/activities`, {
+          ...form,
+          img: image,
+        });
         history.push("/home/page/1");
+        dispatch(getAllCountries());
       } catch (error) {
         console.error("Se rompio", error);
       }
@@ -110,7 +142,7 @@ export const Form = ({ activity, countries }) => {
     <div>
       {" "}
       <form onSubmit={handleSubmit} className={styles.form}>
-        <GoBackButton/>
+        <GoBackButton />
         <div className={styles.contenedor}>
           <div>
             <div className={`${styles.form__group} ${styles.field}`}>
@@ -169,6 +201,7 @@ export const Form = ({ activity, countries }) => {
               <option value={"winter"}>Invierno</option>
             </select>
           </div>
+          <ImgUpload upload={UploadImg} setImage={setImage} />
         </div>
         <fieldset>
           <legend htmlFor="countries">Paises: </legend>
