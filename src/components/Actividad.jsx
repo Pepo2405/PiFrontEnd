@@ -7,7 +7,7 @@ export const Actividad = ({ name, dificulty, season, duration, id, img }) => {
   console.log("lo que llega",img)
   const imagen =
     img ||
-    "https://res.cloudinary.com/onlypepo/image/upload/v1670799257/proyectoIndividual/v82kluagq4w2jrpnb8pn.png";
+    "https://images8.alphacoders.com/479/479393.jpg";
   return (
     <div className={styles.actividad} key={name}>
       <div className={styles.texto}>
