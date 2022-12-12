@@ -79,7 +79,6 @@ export const Form = ({ activity, countries }) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
     errorChecker();
-    console.log(form);
   };
 
   const onCheckHandler = (e) => {
@@ -104,7 +103,7 @@ export const Form = ({ activity, countries }) => {
         `${import.meta.env.VITE_CLOUDINARY_API}`,
         foto
       );
-      console.log("vamo bien");
+      console.log("response",response.data)
       return response.data.url;
     } catch (error) {
       return;
@@ -119,15 +118,16 @@ export const Form = ({ activity, countries }) => {
     if (!error.error) {
       try {
         let image = "";
-        if (form.image != "" && form.image) {
-          console.log("el image",form.image)
-          console.log("entro al if")
+        if (form.image != "") {
+          console.log("entro")
           image = await UploadImg();
-        } 
-        await axios.post(`${import.meta.env.VITE_BACKEND}/activities`, {
+          console.log("la imageeeen",image)
+        }
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND}/activities`, {
           ...form,
           img: image,
         });
+        console.log("la response",response.data)
         history.push("/home/page/1");
         dispatch(getAllCountries());
       } catch (error) {
