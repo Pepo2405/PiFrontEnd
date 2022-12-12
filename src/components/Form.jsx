@@ -95,9 +95,16 @@ export const Form = ({ activity, countries }) => {
   const UploadImg = async () => {
     const foto = new FormData();
     foto.append("file", form.img);
+
     foto.append("api_key", import.meta.env.VITE_CLOUDINARY_API_KEY);
+    console.log("append,", import.meta.env.VITE_CLOUDINARY_API_KEY)
+    
     foto.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+    console.log("append,", import.meta.env.VITE_UPLOAD_PRESET)
+
     foto.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
+    console.log("append,", import.meta.env.VITE_CLOUD_NAME)
+
     try {
       console.log(`el link: ${import.meta.env.VITE_CLOUDINARY_API}`)
       const response = await axios.post(
