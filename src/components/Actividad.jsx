@@ -12,7 +12,7 @@ export const Actividad = ({ name, dificulty, season, duration, id, img }) => {
     <div className={styles.actividad} key={name}>
       <div className={styles.texto}>
         <p className={styles.actTitulo}>{name}</p>
-        <img src={imagen} style={{ maxWidth: "200px", maxHeight: "150px" }} />
+        <img src={imagen} style={{ maxWidth: "200px", maxHeight: "150px",borderRadius:"0.6rem" }} />
         <p>Difficultad : {dificulty}</p>
         <p>Duracion :{duration}</p>
         <p>Temporada: {season}</p>

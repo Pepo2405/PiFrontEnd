@@ -8,6 +8,7 @@ import { AddIcon } from "../assets/icons";
 import { GoBackButton } from "../components/GoBackButton";
 import { Actividad } from "../components/Actividad";
 import styles from "../styles/CountryPage.module.css";
+import { motion } from "framer-motion";
 
 export const Country = () => {
   const { countries } = useSelector((state) => state.countryReducer);
@@ -15,6 +16,20 @@ export const Country = () => {
   const { id } = useParams();
   const country = countries.find((el) => el.id == id);
   const poblacion = new Intl.NumberFormat().format(country?.population);
+
+  const container = {
+    hidden: { opacity: 1, scale: 0, x: -1000 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: {
+        delayChildren: 1,
+        staggerChildren: 1,
+      },
+    },
+  };
+
   useEffect(() => {
     dispatch(getAllCountries());
   }, []);
@@ -91,9 +106,14 @@ export const Country = () => {
                     />
                   </Link>
                 </div>
-                <div className={styles.actividadesContainer}>
+                <motion.div
+                  className={styles.actividadesContainer}
+                  variants={container}
+                  initial="hidden"
+                  animate="visible"
+                >
                   {country.Activities?.length ? (
-                    country.Activities.map((act) => {
+                    country.Activities.map((act, delay) => {
                       const { name, dificulty, img, season, duration, id } =
                         act;
                       return (
@@ -109,11 +129,11 @@ export const Country = () => {
                       );
                     })
                   ) : (
-                    <h4>
+                    <motion.h4>
                       Parece que nadie agrego actividades, Deberias agregar una!
-                    </h4>
+                    </motion.h4>
                   )}
-                </div>
+                </motion.div>
               </div>
             </section>
           </div>

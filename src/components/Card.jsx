@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "../styles/card.module.css";
-import {PersonIcon} from '../assets/icons'
-
+import { PersonIcon } from "../assets/icons";
+import { motion } from "framer-motion";
 export const Card = ({
   id,
   name,
@@ -10,11 +10,23 @@ export const Card = ({
   population,
   flag_img,
   coatOfArms,
+  animation,
+  delay,
 }) => {
   const poblacion = new Intl.NumberFormat().format(population);
 
+  const coso = {
+    hidden: { scale: 0 },
+    show: { scale: 1, transition: { delay: 0.1 * delay } },
+  };
+
   return (
-    <>
+    <motion.div
+      variants={coso}
+      initial="hidden"
+      animate="show"
+      whileHover={{ scale: 1.08, zIndex: 1 }}
+    >
       <NavLink
         to={`/country/${id}`}
         className={styles.container}
@@ -37,12 +49,12 @@ export const Card = ({
         </div>
         <div className={styles.container__info}>
           <span className={styles.span}>
-            <PersonIcon  className={styles.icon}/>
+            <PersonIcon className={styles.icon} />
 
             <p className={styles.darkText}>{poblacion}</p>
           </span>
         </div>
       </NavLink>
-    </>
+    </motion.div>
   );
 };

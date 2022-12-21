@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { CardsContainer } from "../components/CardsContainer";
 import { SearchBar } from "../components/SearchBar";
 import { Paginado } from "../components/Paginado";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { Loader } from "../components/Loader";
 import { Filtros } from "../components/Filtros";
@@ -23,7 +23,7 @@ export const Home = () => {
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
   const dispatch = useDispatch();
-
+  const history = useHistory()
   const orden = {
     az: [...countries].sort((a, b) => {
       if (a.name > b.name) return 1;
@@ -55,7 +55,7 @@ export const Home = () => {
     indexOfLastCountry
   );
 
-  const paginado = (pageNumber) => {
+  const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   useEffect(() => {
@@ -69,7 +69,7 @@ export const Home = () => {
 
   return (
     <>
-      <Layout nav={paginado}>
+      <Layout nav={paginate}>
         
         <SearchBar nav={setCurrentPage} autofocus={true} />
         <select
@@ -87,7 +87,7 @@ export const Home = () => {
         <div style={{ display: "flex", gap: "0.2rem" }}>
           <Filtros
             countries={countries}
-            setPage={setCurrentPage}
+            setPage={paginate}
             activities={activities}
           />
           <Link to={"/addActivity"}>
@@ -121,7 +121,7 @@ export const Home = () => {
         <Paginado
           countriesPerPage={countriesPerPage}
           allCountries={countries}
-          paginado={paginado}
+          paginado={paginate}
           currentPage={currentPage}
         />
       </Layout>

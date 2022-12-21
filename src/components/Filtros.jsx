@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import {  useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { filtros } from "../redux/slices/countries";
 import styles from "../styles/Selector.module.css";
 
-export const Filtros = ({ activities,setPage }) => {
+export const Filtros = ({ activities, setPage }) => {
   const location = useLocation();
   const history = useHistory();
   const [filters, setFilters] = useState({
@@ -20,10 +20,11 @@ export const Filtros = ({ activities,setPage }) => {
 
   useEffect(() => {
     dispatch(filtros(filters));
+    console.log("cagada")
     if (location.pathname.includes("/home")) {
-      if(filters.continents !== "All" && filters.activities !== "All" ){
+      if (filters.continents !== "All" || filters.activities !== "All") {
         history.push("/home/page/1");
-        setPage(1)
+        setPage(1);
       }
     }
   }, [filters]);
@@ -78,7 +79,6 @@ export const Filtros = ({ activities,setPage }) => {
               ))}
             </select>
           )}
-          
         </>
       )}
     </div>

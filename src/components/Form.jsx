@@ -8,9 +8,11 @@ import { GoBackButton } from "./GoBackButton";
 import { ImgUpload } from "./ImgUpload";
 import { useDispatch } from "react-redux";
 import { getAllCountries } from "../redux/slices/countries";
+import { useSelector } from "react-redux";
 
 export const Form = ({ activity, countries }) => {
   const dispatch = useDispatch();
+  const { activities } = useSelector((state) => state.countryReducer);
   const history = useHistory();
   const [form, setForm] = useState(
     !activity
@@ -97,7 +99,7 @@ export const Form = ({ activity, countries }) => {
     foto.append("file", form.img);
 
     foto.append("api_key", import.meta.env.VITE_CLOUDINARY_API_KEY);
-    
+
     foto.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
 
     foto.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
@@ -109,7 +111,7 @@ export const Form = ({ activity, countries }) => {
       );
       return response.data.url;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return;
     }
   };
@@ -123,16 +125,15 @@ export const Form = ({ activity, countries }) => {
       try {
         let image = "";
         if (form.image != "") {
-          console.log("entro")
           image = await UploadImg();
-          console.log("la imageeeen",image)
-          
         }
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND}/activities`, {
-          ...form,
-          img: image,
-        });
-        console.log("la response",response.data)
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND}/activities`,
+          {
+            ...form,
+            img: image,
+          }
+        );
         history.push("/home/page/1");
         dispatch(getAllCountries());
       } catch (error) {
