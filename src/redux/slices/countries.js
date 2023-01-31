@@ -12,7 +12,7 @@ const initialState = {
   loading: false,
   error: {},
 };
-
+//
 export const getAllCountries = createAsyncThunk(
   "countries/getCountries",
   async () => {
