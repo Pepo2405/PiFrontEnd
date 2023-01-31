@@ -73,7 +73,7 @@ export const Form = ({ activity, countries }) => {
     }
 
     error.error = true;
-    error.message = "Falta LLenar Datos";
+    error.message = "Falta Llenar Datos";
     return;
   };
 
